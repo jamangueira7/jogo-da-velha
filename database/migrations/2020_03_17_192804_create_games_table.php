@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Plays extends Migration
+class CreateGamesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,14 +14,14 @@ class Plays extends Migration
     public function up()
     {
         //
-        Schema::create('plays', function (Blueprint $table) {
+        Schema::create('games', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->char('cpf',13)->unique()->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->integer('level');
+            $table->boolean('result')->default(false);
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -33,6 +33,6 @@ class Plays extends Migration
     public function down()
     {
         //
-        Schema::dropIfExists('plays');
+        Schema::dropIfExists('games');
     }
 }

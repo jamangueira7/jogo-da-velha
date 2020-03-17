@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/','GameController@home');
+Route::get('/jogar','GameController@jogar');
+Route::get('/historico','GameController@historico');
+Route::get('/jogo/{id}','GameController@jogo');
+Route::post('/jogada','GameController@jogada');
