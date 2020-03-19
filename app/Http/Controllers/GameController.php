@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\GameRepository;
 use Illuminate\Http\Request;
 
 class GameController extends Controller
@@ -22,6 +23,13 @@ class GameController extends Controller
         return view('sistem.jogo', []);
     }//jogo
 
+    public function criar(Request $request)
+    {
+        $game = new GameRepository();
+        $res = $game->criarJogo($request->all());
+        return json_encode(['game' => $res->id]);
+    }//jogo
+
     public function historico()
     {
 
@@ -30,6 +38,9 @@ class GameController extends Controller
 
     public function jogada(Request $request)
     {
-        return json_encode(['request' => $request->all()]);
+        $game = new GameRepository();
+
+        $res = $game->montaJogada($request->all());
+        return json_encode(['resposta' => $res]);
     }//jogada
 }//GameController

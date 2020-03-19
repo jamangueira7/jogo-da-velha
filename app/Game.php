@@ -10,6 +10,7 @@ class Game extends Authenticatable
 {
     use Notifiable;
 
+    protected $connection = "mysql";
     protected $table = "games";
     /**
      * The attributes that are mass assignable.

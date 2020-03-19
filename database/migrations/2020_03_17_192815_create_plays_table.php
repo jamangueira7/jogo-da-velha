@@ -17,11 +17,11 @@ class CreatePlaysTable extends Migration
         Schema::create('plays', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('play');
-            $table->bigInteger('game_id');
+            $table->unsignedBigInteger('game_id');
             $table->integer('position');
             $table->timestamps();
 
-            $table->foreign('game_id')->references('id')->on('game');
+            $table->foreign('game_id')->references('id')->on('games');
         });
     }
 

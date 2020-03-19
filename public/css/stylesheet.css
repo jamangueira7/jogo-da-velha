@@ -90,7 +90,7 @@ section#conteudo-view form input[type="submit"]{
  *======================================
  */
 #principal{
-    position: fixed;
+    position: absolute;
     float: left;
     background: #f9f9f9;
     width: 220px;
@@ -140,7 +140,7 @@ section#conteudo-view form input[type="submit"]{
  */
 
 #view-conteudo{
-    position: fixed;
+    position: relative;
     float: left;
     width: 100%;
     height: 100%;

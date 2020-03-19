@@ -32,7 +32,6 @@
             color: #F93;
         }
         #fundo {
-            background-image: url(images/fundo.png);
             background-repeat: no-repeat;
             height: 443px;
             width: 515px;
@@ -54,101 +53,36 @@
         a:active {
             color: #000;
         }
+
     </style>
 @stop
 
 @section('conteudo-view')
 
 <div id="fundo">
-    <table width="515" height="487" border="" align="center" cellspacing="0">
-        <tr>
-            <td width="121" height="145" align="center">
-                <table width="161" height="126" border="0" >
-                    <tr>
-                        <td align="center" valign="middle">
-                            <?php echo isset($_SESSION['lance1']) ? $_SESSION['lance1'] : '<p><a href="#" id="p1">Posição 1</a></p>';?>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-            <td width="112" align="center">
-                <table width="161" height="126" border="0">
-                    <tr>
-                        <td align="center" valign="middle">
-                            <?php echo isset($_SESSION['lance1']) ? $_SESSION['lance1'] : '<p><a href="#" id="p2">Posição 2</a></p>';?>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-            <td width="80" align="center">
-                <table width="161" height="126" border="0">
-                    <tr>
-                        <td align="center" valign="middle">
-                            <?php echo isset($_SESSION['lance1']) ? $_SESSION['lance1'] : '<p><a href="#" id="p3">Posição 3</a></p>';?>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-        <tr>
-            <td height="165" align="center">
-                <table width="161" height="126" border="0">
-                    <tr>
-                        <td align="center" valign="middle">
-                            <?php echo isset($_SESSION['lance1']) ? $_SESSION['lance1'] : '<p><a href="#" id="p4">Posição 4</a></p>';?>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-            <td align="center">
-                <table width="161" height="126" border="0">
-                    <tr>
-                        <td align="center" valign="middle">
-                            <?php echo isset($_SESSION['lance1']) ? $_SESSION['lance1'] : '<p><a href="#" id="p5">Posição 5</a></p>';?>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-            <td align="center">
-                <table width="161" height="126" border="0">
-                    <tr>
-                        <td align="center" valign="middle">
-                            <?php echo isset($_SESSION['lance1']) ? $_SESSION['lance1'] : '<p><a href="#" id="p6">Posição 6</a></p>';?>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-        <tr>
-            <td height="177" align="center" valign="top">
-                <table width="161" height="126" border="0">
-                    <tr>
-                        <td align="center" valign="middle">
-                            <?php echo isset($_SESSION['lance1']) ? $_SESSION['lance1'] : '<p><a href="#" id="p7">Posição 7</a></p>';?>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-            <td align="center" valign="top">
-                <table width="162" height="126" border="0">
-                    <tr>
-                        <td align="center" valign="middle">
-                            <?php echo isset($_SESSION['lance1']) ? $_SESSION['lance1'] : '<p><a href="#" id="p8">Posição 8</a></p>';?>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-            <td align="center" valign="top">
-                <table width="161" height="126" border="0">
-                    <tr>
-                        <td align="center" valign="middle">
-                            <?php echo isset($_SESSION['lance1']) ? $_SESSION['lance1'] : '<p><a href="#" id="p9">Posição 9</a></p>';?>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
+   <h1>Regras do jogo:</h1>
+
+    <ol >
+        <li>Escolha o level (fácil, médio, difícil).</li>
+        <li>Escolha a posição que deseja jogar, a maquina será seu adversario.</li>
+        <li>Você sempre será o X e maquina O.</li>
+        <li>O primeiro a fazer uma das conbinações vencedoras vence.</li>
+        <br>
+        <li>Conbinações vencedoras:</li>
+        <ul>
+            <li>posição 1, posição 2, posição 3</li>
+            <li>posição 1, posição 4, posição 7</li>
+            <li>posição 1, posição 5, posição 9</li>
+            <li>posição 2, posição 5, posição 8</li>
+            <li>posição 3, posição 6, posição 9</li>
+            <li>posição 3, posição 5, posição 7</li>
+            <li>posição 4, posição 5, posição 6</li>
+            <li>posição 7, posição 8, posição 9</li>
+        </ul>
+        <br>
+        <li>Caso queira ver o historico dos seus jogos acesse o menu lateral historico.</li>
+        <li>Nos detalhes do jogo você pode ver jogada a jogada do jogo desejado.</li>
+    </ol>
 </div>
 
 
@@ -156,61 +90,5 @@
 @stop
 
 @section('js-view')
-    <script type="text/javascript">
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $(document).ready(function(){
-            $('#p1').click(function(event){
-                event.preventDefault();
-                alert('entrou 1.');
-            });
-            $('#p2').click(function(event){
-                event.preventDefault();
-                alert('entrou 2.');
-            });
-            $('#p3').click(function(event){
-                event.preventDefault();
-                alert('entrou 3.');
-            });
-            $('#p4').click(function(event){
-                event.preventDefault();
-                alert('entrou 4.');
-            });
-            $('#p5').click(function(event){
-                event.preventDefault();
-                alert('entrou 5.');
-            });
-            $('#p6').click(function(event){
-                event.preventDefault();
-                alert('entrou 6.');
-            });
-            $('#p7').click(function(event){
-                event.preventDefault();
-                alert('entrou 7.');
-            });
-            $('#p8').click(function(event){
-                event.preventDefault();
-                alert('entrou 8.');
-            });
-            $('#p9').click(function(event){
-                event.preventDefault();
-                alert('entrou 9.');
-            });
-        });
-
-        /*$.ajax({
-
-            type:'POST',
-            url:'/ajaxRequest',
-            data:{name:name, password:password, email:email},
-            success:function(data){
-                alert(data.success);
-            }
-        });*/
-    </script>
 @stop
