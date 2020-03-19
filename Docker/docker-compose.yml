@@ -8,7 +8,7 @@ volumes:
 
 networks:
   backend:
-    driver: bridge
+    driver: "bridge"
 
 services:
   jogo-da-velha:
@@ -19,21 +19,22 @@ services:
     ports:
       - "8001:8080"
     depends_on:
-      - mysqldb
+      - mysqldb_jv
     networks:
       - backend
-  mysqldb:
-    container_name: mysqldb
+  mysqldb_jv:
+    container_name: mysqldb_jv
     image: mysql:5.7
     volumes:
-      - data:/var/lib/mysql
+      - data:/var/lib/mysql_jv
     ports:
-      - '33006:3306'
+      - '3306:3306'
     networks:
       - backend
+    restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=jogo-da-velha
+      - MYSQL_DATABASE=jogo
       - MYSQL_USER=root
       - MYSQL_PASSWORD=root
 
