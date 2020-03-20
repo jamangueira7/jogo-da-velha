@@ -30,7 +30,7 @@ Para executar o projeto siga os comandos abaixo:
         DB_PASSWORD=root
 
 - **Rode o comando para criar o banco e os dados nele "php artisan migrate:fresh --seed".**
-- **Acesse o projeto pela URL http://127.0.0.1:8101.**
+- **Acesse o projeto pela URL http://127.0.0.1:8001.**
 - **Caso apareça um erro de chave execute o comando "php artisan key:generate" dentro do container.**
 
 - **User criado é o joao@joao.com com senha 123456.**
