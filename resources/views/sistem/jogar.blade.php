@@ -51,6 +51,16 @@
             padding-bottom: 60px;
             margin-bottom: 60px;
         }
+         #novo_jogo {
+             background-repeat: no-repeat;
+             overflow: scroll;
+             height: 130px;
+             width: 515px;
+             margin-right: auto;
+             margin-left: auto;
+             padding-bottom: 60px;
+             margin-bottom: 60px;
+         }
         #level {
             background-repeat: no-repeat;
             height: 100px;
@@ -89,8 +99,7 @@
     <button type="button" class="btn btn-warning btn-lg" id="dificil">Difícil</button>
 </div>
 <div id="interacao" class="alert-dark" style="display: none">
-    <input type="hidden" id="jogo_num" value="">
-    <h3><p id="num_jogo"></p></h3>
+
 </div>
 <div id="fundo" style="display: none">
     <table width="515" height="487" border="" align="center" cellspacing="0">
@@ -201,7 +210,9 @@
         </tr>
     </table>
 </div>
-
+<div id="novo_jogo" style="display: none">
+    <button type="button" class="btn btn-success btn-lg btn-block" id="jogar_de_novo">Novo Jogo</button>
+</div>
 
 
 
@@ -246,11 +257,20 @@
                     }
 
                     if(obj.resposta.gameover == true){
+                        $("#fundo")
+                            .css({"pointer-events" : "none" , "opacity" :  "0.4"})
+                            .attr("tabindex" , "-1");
+                        if(obj.resposta.empate == true){
+                            $("#interacao").append("<p id='mg_jogada' style='line-height: 2px; font-size: 26px;'>Jogo empatou!</p>");
+                            $('#novo_jogo').css('display', 'block');
+                            return;
+                        }
                         jogador_vencedor =  obj.resposta.jogador_vencedor == 1 ? 'x': 'o';
                         $("#td-"+obj.resposta.combinacao[0]).attr("style", "color:red");
                         $("#td-"+obj.resposta.combinacao[1]).attr("style", "color:red");
                         $("#td-"+obj.resposta.combinacao[2]).attr("style", "color:red");
                         $("#interacao").append("<p id='mg_jogada' style='line-height: 2px; font-size: 26px;'>"+ obj.resposta.vencedor +"</p>");
+                        $('#novo_jogo').css('display', 'block');
                     }else{
 
                     }
@@ -283,7 +303,6 @@
 
         function setLevel(level){
             inicial();
-            criarJogo();
             if(level == 'facil'){
                 $("#medio").removeClass("btn btn-secondary btn-lg").addClass("btn btn-light");
                 $("#dificil").removeClass("btn btn-warning btn-lg").addClass("btn btn-light");
@@ -298,14 +317,39 @@
                 $("#facil").removeClass("btn btn-primary btn-lg").addClass("btn btn-light");
                 $("#medio").removeClass("btn btn-secondary btn-lg").addClass("btn btn-lightm");
             }
+            criarJogo();
             $('#fundo').css('display', 'block');
             $('#interacao').css('display', 'block');
             $("#level :input").attr("disabled", true);
+            $('#interacao').append('<input type="hidden" id="jogo_num" value="">');
+            $('#interacao').append('<h3><p id="num_jogo"></p></h3>');
         }
 
 
 
         $(document).ready(function(){
+            //NOVO JOGO
+            $( "#jogar_de_novo" ).click(function() {
+
+                $("#fundo").css("pointer-events", "visible");
+                $("#fundo").css("opacity", "unset");
+                //style="display: block; pointer-events: none; opacity: 0.4;"
+                $("#fundo :input").attr("disabled", false);
+                $("#level :input").attr("disabled", false);
+                inicial();
+                $('#fundo').css('display', 'none');
+                $('#interacao').css('display', 'none');
+                $('#interacao').text('');
+                $('#novo_jogo').css('display', 'none');
+                for (i = 1; i <= 9; i++) {
+                    $("#td-"+i).attr("style", "color:black");
+                    $('#posicao'+i).css('display', 'block');
+                    $('#jogada'+i+'-x').css('display', 'none');
+                    $('#jogada'+i+'-o').css('display', 'none');
+                }
+
+            });
+
             //AÇÕES LEVEL
             $( "#facil" ).click(function() {
                 setLevel('facil');

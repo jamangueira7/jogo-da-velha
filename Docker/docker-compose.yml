@@ -29,9 +29,9 @@ services:
       - data:/var/lib/mysql_jv
     ports:
       - '3306:3306'
+    restart: always
     networks:
       - backend
-    restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=jogo

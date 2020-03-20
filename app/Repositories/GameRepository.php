@@ -29,6 +29,7 @@ class GameRepository
         if($vendedor['gameover']){
             return [
                 'gameover' => $vendedor['gameover'],
+                'empate' => $vendedor['empate'],
                 'vencedor' => "Jogador {$vendedor['vencedor']} venceu!",
                 'jogador_vencedor' => $vendedor['vencedor'],
                 'combinacao' => $vendedor['combinacao'],
@@ -47,6 +48,7 @@ class GameRepository
 
         return [
             'gameover' => $vendedor['gameover'],
+            'empate' => $vendedor['empate'],
             'vencedor' => "Jogador {$vendedor['vencedor']} venceu!",
             'combinacao' => $vendedor['combinacao'],
             'jogador1msg' => 'Jogador 1 jogou na posição '.$dados['posicao'],
@@ -60,19 +62,183 @@ class GameRepository
     private function jogadaMaquina($game_id)
     {
         $level = Game::where('id', $game_id)->select('level')->first();
+        Log::info("$$$$$$$$$$$$$$");
+        Log::info($level);
         $jogada = '';
         if($level->level == 1){
             $jogada = $this->maquinaFacil();
         }
         if($level->level == 2){
-            $jogada = $this->maquinaFacil();
+            $jogada = $this->maquinaMedio();
         }
         if($level->level == 3){
-            $jogada = $this->maquinaFacil();
+            $jogada = $this->maquinaDificil();
         }
         $this->addJogada($game_id, $jogada, 2);
         return $jogada;
-    }
+    }//jogadaMaquina
+
+    private function maquinaDificil()
+    {
+        //primeira reta
+        if($this->arrayJogo[1] == 'X' && $this->arrayJogo[2] == 'X' && $this->arrayJogo[3] == ''){
+            return 3;
+        }
+        if($this->arrayJogo[1] == 'X' && $this->arrayJogo[2] == '' && $this->arrayJogo[3] == 'X'){
+            return 2;
+        }
+        if($this->arrayJogo[1] == '' && $this->arrayJogo[2] == 'X' && $this->arrayJogo[3] == 'X'){
+            return 1;
+        }
+        //segunda reta
+        if($this->arrayJogo[1] == 'X' && $this->arrayJogo[4] == 'X' && $this->arrayJogo[7] == ''){
+            return 7;
+        }
+        if($this->arrayJogo[1] == 'X' && $this->arrayJogo[4] == '' && $this->arrayJogo[7] == 'X'){
+            return 4;
+        }
+        if($this->arrayJogo[1] == '' && $this->arrayJogo[4] == 'X' && $this->arrayJogo[7] == 'X'){
+            return 1;
+        }
+
+        //terceira reta
+        if($this->arrayJogo[3] == 'X' && $this->arrayJogo[6] == 'X' && $this->arrayJogo[9] == ''){
+            return 9;
+        }
+        if($this->arrayJogo[3] == 'X' && $this->arrayJogo[6] == '' && $this->arrayJogo[9] == 'X'){
+            return 6;
+        }
+        if($this->arrayJogo[3] == '' && $this->arrayJogo[6] == 'X' && $this->arrayJogo[9] == 'X'){
+            return 3;
+        }
+
+        //quarta reta
+        if($this->arrayJogo[7] == 'X' && $this->arrayJogo[8] == 'X' && $this->arrayJogo[9] == ''){
+            return 9;
+        }
+        if($this->arrayJogo[7] == 'X' && $this->arrayJogo[8] == '' && $this->arrayJogo[9] == 'X'){
+            return 8;
+        }
+        if($this->arrayJogo[7] == '' && $this->arrayJogo[8] == 'X' && $this->arrayJogo[9] == 'X'){
+            return 7;
+        }
+
+        //quinta reta
+        if($this->arrayJogo[2] == 'X' && $this->arrayJogo[5] == 'X' && $this->arrayJogo[8] == ''){
+            return 8;
+        }
+        if($this->arrayJogo[2] == 'X' && $this->arrayJogo[5] == '' && $this->arrayJogo[8] == 'X'){
+            return 5;
+        }
+        if($this->arrayJogo[2] == '' && $this->arrayJogo[5] == 'X' && $this->arrayJogo[8] == 'X'){
+            return 2;
+        }
+
+        //sexta reta
+        if($this->arrayJogo[4] == 'X' && $this->arrayJogo[5] == 'X' && $this->arrayJogo[6] == ''){
+            return 6;
+        }
+        if($this->arrayJogo[4] == 'X' && $this->arrayJogo[5] == '' && $this->arrayJogo[6] == 'X'){
+            return 5;
+        }
+        if($this->arrayJogo[4] == '' && $this->arrayJogo[5] == 'X' && $this->arrayJogo[6] == 'X'){
+            return 4;
+        }
+
+        //primeira diagonal
+        if($this->arrayJogo[1] == 'X' && $this->arrayJogo[5] == 'X' && $this->arrayJogo[9] == ''){
+            return 9;
+        }
+        if($this->arrayJogo[1] == 'X' && $this->arrayJogo[5] == '' && $this->arrayJogo[9] == 'X'){
+            return 5;
+        }
+        if($this->arrayJogo[1] == '' && $this->arrayJogo[5] == 'X' && $this->arrayJogo[9] == 'X'){
+            return 1;
+        }
+
+        //segunda diagonal
+        if($this->arrayJogo[3] == 'X' && $this->arrayJogo[5] == 'X' && $this->arrayJogo[7] == ''){
+            return 7;
+        }
+        if($this->arrayJogo[3] == 'X' && $this->arrayJogo[5] == '' && $this->arrayJogo[7] == 'X'){
+            return 5;
+        }
+        if($this->arrayJogo[3] == '' && $this->arrayJogo[5] == 'X' && $this->arrayJogo[7] == 'X'){
+            return 3;
+        }
+
+        return $this->maquinaFacil();
+    }//maquinaDificil
+
+    private function maquinaMedio()
+    {
+        //primeira reta
+        if($this->arrayJogo[1] == 'X' && $this->arrayJogo[2] == 'X' && $this->arrayJogo[3] == ''){
+            return 3;
+        }
+        if($this->arrayJogo[1] == 'X' && $this->arrayJogo[2] == '' && $this->arrayJogo[3] == 'X'){
+            return 2;
+        }
+        if($this->arrayJogo[1] == '' && $this->arrayJogo[2] == 'X' && $this->arrayJogo[3] == 'X'){
+            return 1;
+        }
+        //segunda reta
+        if($this->arrayJogo[1] == 'X' && $this->arrayJogo[4] == 'X' && $this->arrayJogo[7] == ''){
+            return 7;
+        }
+        if($this->arrayJogo[1] == 'X' && $this->arrayJogo[4] == '' && $this->arrayJogo[7] == 'X'){
+            return 4;
+        }
+        if($this->arrayJogo[1] == '' && $this->arrayJogo[4] == 'X' && $this->arrayJogo[7] == 'X'){
+            return 1;
+        }
+
+        //terceira reta
+        if($this->arrayJogo[3] == 'X' && $this->arrayJogo[6] == 'X' && $this->arrayJogo[9] == ''){
+            return 9;
+        }
+        if($this->arrayJogo[3] == 'X' && $this->arrayJogo[6] == '' && $this->arrayJogo[9] == 'X'){
+            return 6;
+        }
+        if($this->arrayJogo[3] == '' && $this->arrayJogo[6] == 'X' && $this->arrayJogo[9] == 'X'){
+            return 3;
+        }
+
+        //quarta reta
+        if($this->arrayJogo[7] == 'X' && $this->arrayJogo[8] == 'X' && $this->arrayJogo[9] == ''){
+            return 9;
+        }
+        if($this->arrayJogo[7] == 'X' && $this->arrayJogo[8] == '' && $this->arrayJogo[9] == 'X'){
+            return 8;
+        }
+        if($this->arrayJogo[7] == '' && $this->arrayJogo[8] == 'X' && $this->arrayJogo[9] == 'X'){
+            return 7;
+        }
+
+        //quinta reta
+        if($this->arrayJogo[2] == 'X' && $this->arrayJogo[5] == 'X' && $this->arrayJogo[8] == ''){
+            return 8;
+        }
+        if($this->arrayJogo[2] == 'X' && $this->arrayJogo[5] == '' && $this->arrayJogo[8] == 'X'){
+            return 5;
+        }
+        if($this->arrayJogo[2] == '' && $this->arrayJogo[5] == 'X' && $this->arrayJogo[8] == 'X'){
+            return 2;
+        }
+
+        //sexta reta
+        if($this->arrayJogo[4] == 'X' && $this->arrayJogo[5] == 'X' && $this->arrayJogo[6] == ''){
+            return 6;
+        }
+        if($this->arrayJogo[4] == 'X' && $this->arrayJogo[5] == '' && $this->arrayJogo[6] == 'X'){
+            return 5;
+        }
+        if($this->arrayJogo[4] == '' && $this->arrayJogo[5] == 'X' && $this->arrayJogo[6] == 'X'){
+            return 4;
+        }
+
+        return $this->maquinaFacil();
+    }//maquinaMedio
 
     private function maquinaFacil()
     {
@@ -88,42 +254,56 @@ class GameRepository
         $aux = ['X', 'O'];
         foreach ($aux as $value){
             if($this->arrayJogo[1] == $value && $this->arrayJogo[2] == $value && $this->arrayJogo[3] == $value){
-                return ['gameover' => true, 'vencedor' => $value == 'X' ? 1 : 2, 'combinacao' => [1,2,3]];
+                return ['gameover' => true, 'empate' => false, 'vencedor' => $value == 'X' ? 1 : 2, 'combinacao' => [1,2,3]];
             }
 
             if($this->arrayJogo[1] == $value && $this->arrayJogo[4] == $value && $this->arrayJogo[7] == $value){
-                return ['gameover' => true, 'vencedor' => $value == 'X' ? 1 : 2, 'combinacao' => [1,4,7]];
+                return ['gameover' => true, 'empate' => false, 'vencedor' => $value == 'X' ? 1 : 2, 'combinacao' => [1,4,7]];
             }
 
             if($this->arrayJogo[1] == $value && $this->arrayJogo[5] == $value && $this->arrayJogo[9] == $value){
-                return ['gameover' => true, 'vencedor' => $value == 'X' ? 1 : 2, 'combinacao' => [1,5,9]];
+                return ['gameover' => true, 'empate' => false, 'vencedor' => $value == 'X' ? 1 : 2, 'combinacao' => [1,5,9]];
             }
 
             if($this->arrayJogo[2] == $value && $this->arrayJogo[5] == $value && $this->arrayJogo[8] == $value){
-                return ['gameover' => true, 'vencedor' => $value == 'X' ? 1 : 2, 'combinacao' => [2,5,8]];
+                return ['gameover' => true, 'empate' => false, 'vencedor' => $value == 'X' ? 1 : 2, 'combinacao' => [2,5,8]];
             }
 
             if($this->arrayJogo[3] == $value && $this->arrayJogo[6] == $value && $this->arrayJogo[9] == $value){
-                return ['gameover' => true, 'vencedor' => $value == 'X' ? 1 : 2, 'combinacao' => [3,6,9]];
+                return ['gameover' => true, 'empate' => false, 'vencedor' => $value == 'X' ? 1 : 2, 'combinacao' => [3,6,9]];
             }
 
             if($this->arrayJogo[3] == $value && $this->arrayJogo[5] == $value && $this->arrayJogo[7] == $value){
-                return ['gameover' => true, 'vencedor' => $value == 'X' ? 1 : 2, 'combinacao' => [1,5,7]];
+                return ['gameover' => true, 'empate' => false, 'vencedor' => $value == 'X' ? 1 : 2, 'combinacao' => [3,5,7]];
             }
 
             if($this->arrayJogo[4] == $value && $this->arrayJogo[5] == $value && $this->arrayJogo[6] == $value){
-                return ['gameover' => true, 'vencedor' => $value == 'X' ? 1 : 2, 'combinacao' => [4,5,6]];
+                return ['gameover' => true, 'empate' => false, 'vencedor' => $value == 'X' ? 1 : 2, 'combinacao' => [4,5,6]];
             }
 
             if($this->arrayJogo[7] == $value && $this->arrayJogo[8] == $value && $this->arrayJogo[9] == $value){
-                return ['gameover' => true, 'vencedor' => $value == 'X' ? 1 : 2, 'combinacao' => [7,8,9]];
+                return ['gameover' => true, 'empate' => false, 'vencedor' => $value == 'X' ? 1 : 2, 'combinacao' => [7,8,9]];
             }
         }
 
-        return ['gameover' => false, 'vencedor' => '' , 'combinacao' => ''];
+        if($this->checarEmpate()){
+            return ['gameover' => true, 'empate' => true, 'vencedor' => '' , 'combinacao' => ''];
+        }
+
+        return ['gameover' => false,  'empate' => false, 'vencedor' => '' , 'combinacao' => ''];
 
     }//checarVencedor
 
+    private function checarEmpate()
+    {
+        $cont = 0;
+        foreach ($this->arrayJogo as $jogada){
+            if($jogada == ''){
+                $cont += 1;
+            }
+        }
+        return $cont < 1 ? true : false;
+    }//checarEmpate
 
     private function montaArrayJogo($game_id)
     {
