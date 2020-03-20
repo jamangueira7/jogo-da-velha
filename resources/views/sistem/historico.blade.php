@@ -2,154 +2,33 @@
 
 
 @section('css-view')
-    <style type="text/css">
-        .botao {
-            background-color: #F93;
-            padding: 10px;
-            color: #000;
-            text-decoration: none;
-        }
-        .botao a {
-            color: #FFF;
-            text-decoration: none;
-        }
-        .botao a:hover {
-            background-color: #C90;
-            padding: 15px;
-        }
-        .botao a:visited  {
-            color: #FFF;
-            text-decoration: none;
-        }
 
-        .botao a:active  {
-            color: #FFF;
-            text-decoration: none;
-        }
-        .msg {
-            font-family: Verdana, Geneva, sans-serif;
-            font-size: 24px;
-            color: #F93;
-        }
-        #fundo {
-            background-image: url(images/fundo.png);
-            background-repeat: no-repeat;
-            height: 443px;
-            width: 515px;
-            margin-right: auto;
-            margin-left: auto;
-            padding-bottom: 60px;
-            margin-bottom: 60px;
-        }
-        a:link {
-            font-family: Verdana, Geneva, sans-serif;
-            color: #000;
-            text-decoration: none;
-            padding: 5px;
-        }
-        a:visited {
-            color: #000;
-            text-decoration: none;
-        }
-        a:active {
-            color: #000;
-        }
-    </style>
 @stop
 
 @section('conteudo-view')
-
-<div id="fundo">
-    <table width="515" height="487" border="" align="center" cellspacing="0">
-        <tr>
-            <td width="121" height="145" align="center">
-                <table width="161" height="126" border="0" >
-                    <tr>
-                        <td align="center" valign="middle">
-                            <?php echo isset($_SESSION['lance1']) ? $_SESSION['lance1'] : '<p><a href="#" id="p1">Posição 1</a></p>';?>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-            <td width="112" align="center">
-                <table width="161" height="126" border="0">
-                    <tr>
-                        <td align="center" valign="middle">
-                            <?php echo isset($_SESSION['lance1']) ? $_SESSION['lance1'] : '<p><a href="#" id="p2">Posição 2</a></p>';?>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-            <td width="80" align="center">
-                <table width="161" height="126" border="0">
-                    <tr>
-                        <td align="center" valign="middle">
-                            <?php echo isset($_SESSION['lance1']) ? $_SESSION['lance1'] : '<p><a href="#" id="p3">Posição 3</a></p>';?>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-        <tr>
-            <td height="165" align="center">
-                <table width="161" height="126" border="0">
-                    <tr>
-                        <td align="center" valign="middle">
-                            <?php echo isset($_SESSION['lance1']) ? $_SESSION['lance1'] : '<p><a href="#" id="p4">Posição 4</a></p>';?>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-            <td align="center">
-                <table width="161" height="126" border="0">
-                    <tr>
-                        <td align="center" valign="middle">
-                            <?php echo isset($_SESSION['lance1']) ? $_SESSION['lance1'] : '<p><a href="#" id="p5">Posição 5</a></p>';?>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-            <td align="center">
-                <table width="161" height="126" border="0">
-                    <tr>
-                        <td align="center" valign="middle">
-                            <?php echo isset($_SESSION['lance1']) ? $_SESSION['lance1'] : '<p><a href="#" id="p6">Posição 6</a></p>';?>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-        <tr>
-            <td height="177" align="center" valign="top">
-                <table width="161" height="126" border="0">
-                    <tr>
-                        <td align="center" valign="middle">
-                            <?php echo isset($_SESSION['lance1']) ? $_SESSION['lance1'] : '<p><a href="#" id="p7">Posição 7</a></p>';?>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-            <td align="center" valign="top">
-                <table width="162" height="126" border="0">
-                    <tr>
-                        <td align="center" valign="middle">
-                            <?php echo isset($_SESSION['lance1']) ? $_SESSION['lance1'] : '<p><a href="#" id="p8">Posição 8</a></p>';?>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-            <td align="center" valign="top">
-                <table width="161" height="126" border="0">
-                    <tr>
-                        <td align="center" valign="middle">
-                            <?php echo isset($_SESSION['lance1']) ? $_SESSION['lance1'] : '<p><a href="#" id="p9">Posição 9</a></p>';?>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Level</th>
+                <th>Resultado</th>
+                <th>Data</th>
+                <th>Jogadas</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($jogos as $jogo)
+            <tr>
+                <td>{{$jogo->id}}</td>
+                <td>{{\App\Helpers\Helper::formataLevel($jogo->level)}}</td>
+                <td>{{\App\Helpers\Helper::formataResultado($jogo->result)}}</td>
+                <td>{{\App\Helpers\Helper::formataDataBR($jogo->created_at)}}</td>
+                <td><a href="{{url('detalhes',[$jogo->id])}}">Ver Jogadas</a></td>
+            </tr>
+            @endforeach
+        </tbody>
     </table>
-</div>
+    {{ $jogos->links() }}
 
 
 

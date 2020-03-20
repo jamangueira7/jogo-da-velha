@@ -112,7 +112,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../pardini/fenix" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/sistem" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -147,7 +147,8 @@
       <updated>1584454704401</updated>
       <workItem from="1584454705761" duration="14044000" />
       <workItem from="1584541191580" duration="16924000" />
-      <workItem from="1584658504127" duration="5362000" />
+      <workItem from="1584658504127" duration="8543000" />
+      <workItem from="1584711631076" duration="8064000" />
     </task>
     <servers />
   </component>
@@ -155,10 +156,18 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="554" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1584711858403">
+      <screen x="62" y="0" width="1474" height="864" />
+    </state>
+    <state x="554" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/62.0.1474.864/1982.0.1298.768@62.0.1474.864" timestamp="1584711858403" />
     <state x="580" y="187" key="FileChooserDialogImpl" timestamp="1584541376569">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
     <state x="580" y="187" key="FileChooserDialogImpl/62.0.1474.864/1982.0.1298.768@62.0.1474.864" timestamp="1584541376569" />
+    <state x="580" y="247" key="NewPhpClassDialog" timestamp="1584712667394">
+      <screen x="62" y="0" width="1474" height="864" />
+    </state>
+    <state x="580" y="247" key="NewPhpClassDialog/62.0.1474.864/1982.0.1298.768@62.0.1474.864" timestamp="1584712667394" />
     <state x="635" y="356" key="NewPhpFileDialog" timestamp="1584480366086">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
@@ -167,10 +176,10 @@
       <screen x="62" y="0" width="1474" height="864" />
     </state>
     <state x="496" y="256" key="com.intellij.ide.util.TipDialog/62.0.1474.864/1982.0.1298.768@62.0.1474.864" timestamp="1584571000298" />
-    <state x="1982" y="0" width="1090" height="851" maximized="true" key="dock-window-1" timestamp="1584473241553">
+    <state x="1982" y="0" width="1265" height="851" key="dock-window-1" timestamp="1584714406750">
       <screen x="1982" y="0" width="1298" height="768" />
     </state>
-    <state x="1982" y="0" width="1090" height="851" maximized="true" key="dock-window-1/62.0.1474.864/1982.0.1298.768@62.0.1474.864" timestamp="1584473241553" />
+    <state x="1982" y="0" width="1265" height="851" key="dock-window-1/62.0.1474.864/1982.0.1298.768@62.0.1474.864" timestamp="1584714406750" />
     <state x="1982" y="0" width="1090" height="851" key="dock-window-2" timestamp="1584473132878">
       <screen x="1982" y="0" width="1298" height="768" />
     </state>

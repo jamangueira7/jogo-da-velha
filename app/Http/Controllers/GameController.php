@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Game;
+use App\Play;
 use App\Repositories\GameRepository;
 use Illuminate\Http\Request;
 
@@ -33,7 +35,16 @@ class GameController extends Controller
     public function historico()
     {
 
-        return view('sistem.historico', []);
+        $jogo = Game::where('user_id',1)->paginate(20);
+        return view('sistem.historico', ['jogos' =>$jogo]);
+    }//historico
+
+    public function detalhes($id)
+    {
+        $game = new GameRepository();
+        $jogadas = $game->montarDetalhes($id);
+
+        return view('sistem.detalhes', ['jogadas' => $jogadas]);
     }//historico
 
     public function jogada(Request $request)

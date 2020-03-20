@@ -32,7 +32,7 @@
             color: #F93;
         }
         #fundo {
-            background-image: url(images/fundo.png);
+            background-image: url({{asset('images/fundo.png')}});
             background-repeat: no-repeat;
             height: 443px;
             width: 515px;

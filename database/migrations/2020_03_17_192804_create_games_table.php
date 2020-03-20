@@ -17,7 +17,7 @@ class CreateGamesTable extends Migration
         Schema::create('games', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('level');
-            $table->boolean('result')->default(false);
+            $table->char('result', 1)->default(1);
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
 

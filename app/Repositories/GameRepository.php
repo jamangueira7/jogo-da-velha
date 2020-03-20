@@ -2,6 +2,7 @@
 namespace App\Repositories;
 
 use App\Game;
+use App\Helpers\Helper;
 use App\Play;
 use Illuminate\Support\Facades\Log;
 
@@ -9,12 +10,48 @@ class GameRepository
 {
     private  $arrayJogo = [];
 
+    public function montarDetalhes($id)
+    {
+        $jogadas = Play::where('game_id', $id)->get();
+        $game = Game::where('id', $id)->first();
+        $this->montaArrayJogo($id);
+        $vendedor = $this->checarVencedor();
+
+        $play = $vendedor['vencedor'] == 1 ? 'Você venceu!' : 'A Maquina venceu!';
+        $play = $vendedor['empate'] == true ? 'Empatou!' : $play;
+
+
+        return [
+            'id' => $id,
+            'level' => Helper::formataLevel($game->level),
+            'gameover' => $vendedor['gameover'],
+            'empate' => $vendedor['empate'] ?? false ,
+            'vencedor' => "{$play}",
+            'jogador_vencedor' => $vendedor['vencedor'],
+            'combinacao' => !empty($vendedor['combinacao']) ? $vendedor['combinacao'] : [11,12,13],
+            'detalhe' => $this->montarJogadas($jogadas),
+            'jogadas' => $this->arrayJogo,
+        ];
+
+    }//montarDetalhes
+
+    private function montarJogadas($jogadas)
+    {
+        $msg = [];
+        foreach ($jogadas as $jogada){
+            $play = $jogada->play == 1 ? 'Você' : 'Maquina';
+            $peca = $jogada->play == 1 ? 'X' : 'O';
+            $msg [] = "{$play} ({$peca}) jogou na posição {$jogada->position}";
+        }
+        return $msg;
+    }//montarJogadas
+
     public function criarJogo($dados)
     {
 
         $res = Game::create([
             'level'=>$dados['level'],
-            'result'=>false,
+            'result'=>1,
             'user_id'=> 1,
         ]);
         return $res;
@@ -26,14 +63,21 @@ class GameRepository
         $this->montaArrayJogo($dados['game_id']);
         $vendedor = $this->checarVencedor();
 
+        if($vendedor['gameover'] && $vendedor['vencedor'] == 1  && $vendedor['empate'] == false){
+            $this->atribuirVitoria($dados['game_id'], 2);
+        }elseif($vendedor['gameover'] && $vendedor['empate']){
+            $this->atribuirVitoria($dados['game_id'], 3);
+        }
+
+        $play = $vendedor['vencedor'] == 1 ? 'Você' : 'A Maquina';
         if($vendedor['gameover']){
             return [
                 'gameover' => $vendedor['gameover'],
                 'empate' => $vendedor['empate'],
-                'vencedor' => "Jogador {$vendedor['vencedor']} venceu!",
+                'vencedor' => "{$play} venceu!",
                 'jogador_vencedor' => $vendedor['vencedor'],
                 'combinacao' => $vendedor['combinacao'],
-                'jogador1msg' => 'Jogador 1 jogou na posição '.$dados['posicao'],
+                'jogador1msg' => 'Você jogou na posição '.$dados['posicao'],
                 'jogador2msg' => '',
                 'jogador1' => $dados['posicao'],
                 'jogador2' => '',
@@ -45,19 +89,32 @@ class GameRepository
         $this->montaArrayJogo($dados['game_id']);
         $vendedor = $this->checarVencedor();
 
+        if($vendedor['gameover'] && $vendedor['vencedor'] == 1){
+            $this->atribuirVitoria($dados['game_id'], 2);
+        }elseif($vendedor['gameover'] && $vendedor['empate']){
+            $this->atribuirVitoria($dados['game_id'], 3);
+        }
 
+        $play = $vendedor['vencedor'] == 1 ? 'Você' : 'A Maquina';
         return [
             'gameover' => $vendedor['gameover'],
             'empate' => $vendedor['empate'],
-            'vencedor' => "Jogador {$vendedor['vencedor']} venceu!",
+            'vencedor' => "{$play} venceu!",
             'combinacao' => $vendedor['combinacao'],
-            'jogador1msg' => 'Jogador 1 jogou na posição '.$dados['posicao'],
-            'jogador2msg' => 'Jogador 2 jogou na posição '.$maquina,
+            'jogador1msg' => 'Você jogou na posição '.$dados['posicao'],
+            'jogador2msg' => 'A Maquina jogou na posição '.$maquina,
             'jogador1' => $dados['posicao'],
             'jogador2' => $maquina,
         ];
 
     }//montaJogada
+
+    private function atribuirVitoria($id, $result)
+    {
+        $game = Game::where('id', $id)->first();
+        $game->result = $result;
+        $game->save();
+    }//atribuirVitoria
 
     private function jogadaMaquina($game_id)
     {

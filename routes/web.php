@@ -17,4 +17,5 @@ Route::get('/jogar','GameController@jogar');
 Route::get('/historico','GameController@historico');
 Route::get('/jogo/{id}','GameController@jogo');
 Route::post('/jogada','GameController@jogada');
+Route::get('/detalhes/{id}','GameController@detalhes');
 Route::post('/criar','GameController@criar');
