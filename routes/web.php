@@ -11,11 +11,20 @@
 |
 */
 
+//Rotas jogo
+Route::get('/','GameController@home')->middleware('checklogin');
+Route::get('/jogar','GameController@jogar')->middleware('checklogin');
+Route::get('/historico','GameController@historico')->middleware('checklogin');
+Route::get('/jogo/{id}','GameController@jogo')->middleware('checklogin');
+Route::post('/jogada','GameController@jogada')->middleware('checklogin');
+Route::get('/detalhes/{id}','GameController@detalhes')->middleware('checklogin');
+Route::post('/criar','GameController@criar')->middleware('checklogin');
 
-Route::get('/','GameController@home');
-Route::get('/jogar','GameController@jogar');
-Route::get('/historico','GameController@historico');
-Route::get('/jogo/{id}','GameController@jogo');
-Route::post('/jogada','GameController@jogada');
-Route::get('/detalhes/{id}','GameController@detalhes');
-Route::post('/criar','GameController@criar');
+//Rotas usuario
+Route::get('/cadastro','UserController@cadastro')->middleware('checklogin');
+Route::post('/criar-user','UserController@criar')->middleware('checklogin');
+Route::get('/login','UserController@login')->middleware('checklogin');
+Route::get('/logout','UserController@logout')->middleware('checklogin');
+Route::post('/logar','UserController@logar')->middleware('checklogin');
+Route::get('/info','UserController@info')->middleware('checklogin');
+Route::post('/update/{id}','UserController@update')->middleware('checklogin');

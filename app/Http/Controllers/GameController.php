@@ -35,7 +35,7 @@ class GameController extends Controller
     public function historico()
     {
 
-        $jogo = Game::where('user_id',1)->paginate(20);
+        $jogo = Game::where('user_id',session('login')['id'])->paginate(20);
         return view('sistem.historico', ['jogos' =>$jogo]);
     }//historico
 

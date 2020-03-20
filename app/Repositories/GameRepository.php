@@ -52,7 +52,7 @@ class GameRepository
         $res = Game::create([
             'level'=>$dados['level'],
             'result'=>1,
-            'user_id'=> 1,
+            'user_id'=> session('login')['id'],
         ]);
         return $res;
     }//criarJogo

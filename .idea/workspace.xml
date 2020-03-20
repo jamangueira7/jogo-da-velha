@@ -112,7 +112,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/sistem" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/user" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -121,12 +121,15 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\desenvolvimento\jogo-da-velha\resources\views\user" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\desenvolvimento\jogo-da-velha\resources\views\sistem" />
-      <recent name="D:\desenvolvimento\jogo-da-velha\public\css" />
+      <recent name="D:\desenvolvimento\jogo-da-velha\resources\views\user" />
+      <recent name="D:\desenvolvimento\jogo-da-velha\app\Http\Middleware" />
+      <recent name="D:\desenvolvimento\jogo-da-velha\public" />
+      <recent name="D:\desenvolvimento\jogo-da-velha\public\images" />
       <recent name="D:\desenvolvimento\jogo-da-velha\resources\views" />
-      <recent name="D:\desenvolvimento\jogo-da-velha\app" />
-      <recent name="D:\desenvolvimento\jogo-da-velha" />
     </key>
   </component>
   <component name="RunManager">
@@ -148,7 +151,7 @@
       <workItem from="1584454705761" duration="14044000" />
       <workItem from="1584541191580" duration="16924000" />
       <workItem from="1584658504127" duration="8543000" />
-      <workItem from="1584711631076" duration="8064000" />
+      <workItem from="1584711631076" duration="25399000" />
     </task>
     <servers />
   </component>
@@ -184,13 +187,13 @@
       <screen x="1982" y="0" width="1298" height="768" />
     </state>
     <state x="1982" y="0" width="1090" height="851" key="dock-window-2/62.0.1474.864/1982.0.1298.768@62.0.1474.864" timestamp="1584473132878" />
-    <state x="493" y="164" width="611" height="536" key="find.popup" timestamp="1584572076762">
+    <state x="493" y="164" width="611" height="536" key="find.popup" timestamp="1584745162990">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
-    <state x="493" y="164" width="611" height="536" key="find.popup/62.0.1474.864/1982.0.1298.768@62.0.1474.864" timestamp="1584572076762" />
-    <state x="456" y="197" key="run.anything.popup" timestamp="1584660612708">
+    <state x="493" y="164" width="611" height="536" key="find.popup/62.0.1474.864/1982.0.1298.768@62.0.1474.864" timestamp="1584745162990" />
+    <state x="456" y="197" key="run.anything.popup" timestamp="1584742427819">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
-    <state x="456" y="197" key="run.anything.popup/62.0.1474.864/1982.0.1298.768@62.0.1474.864" timestamp="1584660612708" />
+    <state x="456" y="197" key="run.anything.popup/62.0.1474.864/1982.0.1298.768@62.0.1474.864" timestamp="1584742427819" />
   </component>
 </project>

@@ -23,7 +23,6 @@ div.background{
     left: 0;
     width: calc(100% - 300px);
     height: 100%;
-    background: url(../assets/images/fundo_login.jpg);
     background-size: cover;
 }
 section#conteudo-view{
@@ -65,25 +64,6 @@ section#conteudo-view form p{
     font-size: 1.25em;
 }
 
-section#conteudo-view form input[type="submit"],
-section#conteudo-view form label input{
-    float: left;
-    width: 100%;
-    height: 40px;
-    padding: 0 20px;
-    border-radius:  20px;
-    border: 2px solid #52ca9b;
-    color: #959595;
-    font: 1em 'Arial';
-}
-section#conteudo-view form input[type="submit"]{
-    width: 60%;
-    float: right;
-    background: #00ff9c;
-    text-align: center;
-    font: 1em 'Fredoka One', cursive;
-    color: #f9f9f9;
-}
 
 /**
  *stylesheet to menu lateral
@@ -181,25 +161,6 @@ form.form-padrao label span{
     padding-bottom: 5px;
 }
 
-form.form-padrao label input{
-    float: left;
-    width: 100%;
-    font: 400 1.25em "Arial";
-    color: #5c5c5c;
-    background: transparent;
-}
-
-form.form-padrao label.submit{
-    background: #0ad181;
-    border-color: #0aaa67;
-}
-
-form.form-padrao label.submit input{
-    font-weight: 800;
-    text-transform: uppercase;
-    line-height: 50px;
-    color: #f9f9f9;
-}
 
 .default-table{
     float: left;

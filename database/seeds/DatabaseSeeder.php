@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
             'cpf' => '1234567444-00',
             'name' => 'João Mangueira',
             'email' => 'joao@joao.com',
-            'password' => env("PASSWORD_HASH") ? bcrypt('123456') : '123456'
+            'password' => '123456'
         ]);
     }
 }
