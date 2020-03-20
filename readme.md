@@ -22,10 +22,10 @@ Para executar o projeto siga os comandos abaixo:
 - **Apos entrar no container do apache execute o comando "composer install" para instalar as dependencias do projeto.**
 - **Preencha os seus dados de conexão.**
 
-        DB_CONNECTION=mysql
+        DB_CONNECTION=mysqldb_jv
         DB_HOST=127.0.0.1
         DB_PORT=3306
-        DB_DATABASE=proj-invest
+        DB_DATABASE=jogo
         DB_USERNAME=root
         DB_PASSWORD=root
 
