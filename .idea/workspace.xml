@@ -112,7 +112,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/user" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -152,6 +152,9 @@
       <workItem from="1584541191580" duration="16924000" />
       <workItem from="1584658504127" duration="8543000" />
       <workItem from="1584711631076" duration="25669000" />
+      <workItem from="1584748788143" duration="274000" />
+      <workItem from="1584749064024" duration="107000" />
+      <workItem from="1584749251892" duration="853000" />
     </task>
     <servers />
   </component>
@@ -163,10 +166,10 @@
       <screen x="62" y="0" width="1474" height="864" />
     </state>
     <state x="554" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/62.0.1474.864/1982.0.1298.768@62.0.1474.864" timestamp="1584711858403" />
-    <state x="580" y="187" key="FileChooserDialogImpl" timestamp="1584541376569">
+    <state x="580" y="187" key="FileChooserDialogImpl" timestamp="1584749056510">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
-    <state x="580" y="187" key="FileChooserDialogImpl/62.0.1474.864/1982.0.1298.768@62.0.1474.864" timestamp="1584541376569" />
+    <state x="580" y="187" key="FileChooserDialogImpl/62.0.1474.864/1982.0.1298.768@62.0.1474.864" timestamp="1584749056510" />
     <state x="580" y="247" key="NewPhpClassDialog" timestamp="1584712667394">
       <screen x="62" y="0" width="1474" height="864" />
     </state>

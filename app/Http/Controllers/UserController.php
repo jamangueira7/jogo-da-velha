@@ -20,7 +20,8 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::where('id', $id)->first();
-        if($request->get('senha') != $request->get('confi')){
+
+        if($request->get('password') != $request->get('conf')){
             session()->flash('error', [
                 'error' => true,
                 'messages' => "Senhas não correspondem.",
@@ -29,8 +30,8 @@ class UserController extends Controller
         }
 
         $user->name = $request->get('name');
-        if(!empty($request->get('senha'))){
-            $user->password = bcrypt($request->get('senha'));
+        if(!empty($request->get('password'))){
+            $user->password = $request->get('password');
         }
         try {
             $user->save();
@@ -45,7 +46,7 @@ class UserController extends Controller
 
         session()->flash('success', [
             'success' => true,
-            'messages' => "Usuario Ataulizado",
+            'messages' => "Usuario Ataulizaydo",
         ]);
 
         return view('user.info', ['user' =>$user]);

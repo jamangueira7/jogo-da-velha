@@ -68,11 +68,11 @@
         </div>
         <div class="form-group">
             <label >Senha:</label>
-            <input type="password" id="senha" name="senha" value=""  class="form-control"><br>
+            <input type="password"  maxlength="10" id="password" name="password" value=""  class="form-control"><br>
         </div>
         <div class="form-group">
             <label for="fname">Confirme senha:</label>
-            <input type="password" id="conf" name="conf" value=""  class="form-control"><br>
+            <input type="password" maxlength="10" id="conf" name="conf" value=""  class="form-control"><br>
         </div>
         <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
